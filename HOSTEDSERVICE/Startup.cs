@@ -30,8 +30,9 @@ namespace HOSTEDSERVICE
 
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddTransient<IPersonService, PersonService>();
-            services.AddTransient<IRandumNumberProviderService, RandumNumberProviderService>();
+            services.AddSingleton<IPersonService, PersonService>();
+            services.AddSingleton<IRandumNumberProviderService, RandumNumberProviderService>();
+            services.AddSingleton<IPokePerson, PokePerson>();
             services.AddSingleton<IHostedService, DataRefreshService>();
 
             services.AddMvc();

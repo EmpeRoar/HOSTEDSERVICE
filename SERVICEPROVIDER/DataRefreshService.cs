@@ -9,28 +9,31 @@ namespace SERVICEPROVIDER
 {
     public class DataRefreshService : BackgroundService
     {
+        private readonly IPokePerson _pokePerson;
         private readonly ILogger<DataRefreshService> _logger;
-        public DataRefreshService(ILogger<DataRefreshService> logger)
+        public DataRefreshService(ILogger<DataRefreshService> logger, IPokePerson pokePerson)
         {
             _logger = logger;
-
+            _pokePerson = pokePerson;
 
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
 
-            _logger.LogDebug($"DataRefreshService is starting.");
+            _logger.LogCritical($"DataRefreshService is starting.");
 
             stoppingToken.Register(() =>
-                    _logger.LogDebug($" DataRefreshService background task is stopping."));
+                    _logger.LogCritical($" DataRefreshService background task is stopping."));
 
             while (!stoppingToken.IsCancellationRequested)
             {
+
+                _pokePerson.Poke(stoppingToken);
                 //_personService.AddToDbBackground(stoppingToken);
                 await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
             }
 
-            _logger.LogDebug($"DataRefreshService background task is stopping.");
+            _logger.LogCritical($"DataRefreshService background task is stopping.");
         }
     }
 }

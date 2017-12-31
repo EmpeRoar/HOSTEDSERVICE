@@ -19,7 +19,7 @@ namespace HOSTEDSERVICE.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            _logger.LogCritical($"Value Log!");
+            _logger.LogInformation($"Log Info", null);
             return new string[] { "value1", "value2" };
         }
 

@@ -9,8 +9,8 @@ namespace SERVICEPROVIDER
 {
     public class PersonService : IPersonService
     {
-        readonly private IRandumNumberProviderService _rand;
-        readonly private AppDbContext _dbContext;
+        private IRandumNumberProviderService _rand;
+        private AppDbContext _dbContext;
         public PersonService(DbContextOptions<AppDbContext> connectionString, IRandumNumberProviderService rand)
         {
             _dbContext = new AppDbContext(connectionString);
