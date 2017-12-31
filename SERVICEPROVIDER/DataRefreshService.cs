@@ -21,13 +21,13 @@ namespace SERVICEPROVIDER
 
             _logger.LogCritical($"DataRefreshService is starting.");
 
-            stoppingToken.Register(() =>
-                    _logger.LogCritical($" DataRefreshService background task is stopping."));
+            stoppingToken.Register(() => _logger.LogCritical($" DataRefreshService background task is stopping."));
 
+            var i = 0;
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogCritical($" Count ");
-                //_personService.AddToDbBackground(stoppingToken);
+                _logger.LogCritical($" Count {i}");
+                i++;
                 await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
             }
 

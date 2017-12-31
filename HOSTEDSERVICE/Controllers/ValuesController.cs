@@ -10,16 +10,16 @@ namespace HOSTEDSERVICE.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        ILogger _logger;
-        public ValuesController(ILogger<ValuesController> logger)
+     
+        public ValuesController()
         {
-            _logger = logger;
+            
         }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            _logger.LogInformation($"Log Info", null);
+          
             return new string[] { "value1", "value2" };
         }
 
