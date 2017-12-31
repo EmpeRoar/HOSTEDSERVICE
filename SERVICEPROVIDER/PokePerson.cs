@@ -13,9 +13,10 @@ namespace SERVICEPROVIDER
             _personService = personService;
         }
 
-        public void Poke(CancellationToken stoppingToken)
+        public int Poke(CancellationToken stoppingToken)
         {
             _personService.AddToDbBackground(stoppingToken);
+            return 1;
         }
     }
 }

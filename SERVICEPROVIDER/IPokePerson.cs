@@ -7,6 +7,6 @@ namespace SERVICEPROVIDER
 {
     public interface IPokePerson
     {
-        void Poke(CancellationToken stoppingToken);
+        int Poke(CancellationToken stoppingToken);
     }
 }

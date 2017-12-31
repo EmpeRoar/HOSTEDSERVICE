@@ -9,13 +9,12 @@ namespace SERVICEPROVIDER
 {
     public class DataRefreshService : BackgroundService
     {
-        private readonly IPokePerson _pokePerson;
+     
         private readonly ILogger<DataRefreshService> _logger;
-        public DataRefreshService(ILogger<DataRefreshService> logger, IPokePerson pokePerson)
+        public DataRefreshService(ILogger<DataRefreshService> logger)
         {
             _logger = logger;
-            _pokePerson = pokePerson;
-
+        
         }
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -27,8 +26,7 @@ namespace SERVICEPROVIDER
 
             while (!stoppingToken.IsCancellationRequested)
             {
-
-                _pokePerson.Poke(stoppingToken);
+                _logger.LogCritical($" Count ");
                 //_personService.AddToDbBackground(stoppingToken);
                 await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
             }
